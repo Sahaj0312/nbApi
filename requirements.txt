@@ -1,5 +1,0 @@
-flask 
-gunicorn
-beautifulsoup4
-googletrans
-requests
