@@ -1,3 +1,4 @@
+from types import resolve_bases
 import flask
 from flask import render_template, jsonify
 from getScore import getScore
@@ -14,9 +15,13 @@ def main():
 @app.route("/<string:a>", methods=['GET'])
 def home(a):
     try:
-        return jsonify({"score": getScore(a)})
+        response = jsonify({"score": getScore(a)})
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
     except KeyError:
-        return 'Invalid input'
+        response = 'Invalid input'
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
 
     
 
